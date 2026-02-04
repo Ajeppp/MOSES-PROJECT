@@ -22,6 +22,7 @@ func Connect() {
 		&models.Player{},
 		&models.Unavailability{},
 		&models.ServiceSchedule{},
+		&models.User{},
 	)
 	if err != nil {
 		log.Fatal("Failed to migrate database")
