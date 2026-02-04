@@ -28,7 +28,7 @@ Body (JSON):
 ```json
 {
   "name": "John",
-  "role": "SINGER"
+  "role": "Singer"
 }
 ```
 
@@ -50,7 +50,7 @@ Response:
   {
     "id": 1,
     "name": "John",
-    "role": "SINGER"
+    "role": "Singer"
   }
 ]
 ```
@@ -154,7 +154,7 @@ Response:
     "service_date": "2026-02-07",
     "month": 2,
     "year": 2026,
-    "role": "SINGER",
+    "role": "Singer",
     "player_id": 3
   }
 ]
@@ -195,11 +195,11 @@ Response:
 # 🧱 Role Constants (SYSTEM ENUM)
 ```txt
 WL
-SINGER
-BASS
-KEYS
-DRUM
-GUITAR
+Singer
+Bass
+Keys
+Drum
+Guitar
 ```
 
 ---
