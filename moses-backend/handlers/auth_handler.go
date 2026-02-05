@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 
 	"moses/services"
 	"moses/utils"
@@ -72,4 +73,20 @@ func (h *AuthHandler) Login(c *gin.Context) {
 			"role":  user.Role,
 		},
 	})
+}
+
+func (h *AuthHandler) Logout(c *gin.Context) {
+	auth := c.GetHeader("Authorization")
+	if auth == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "no token provided"})
+		return
+	}
+
+	tokenStr := strings.Replace(auth, "Bearer ", "", 1)
+	if err := utils.LogoutToken(tokenStr); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to logout"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "logged out successfully"})
 }

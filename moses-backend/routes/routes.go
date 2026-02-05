@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"net/http"
+
 	"moses/controllers"
 	"moses/handlers"
 	"moses/middleware"
@@ -39,10 +41,11 @@ func RegisterRoutes(r *gin.Engine) {
 	// =========================
 	authHandler := handlers.NewAuthHandler()
 
-	auth := r.Group("/api/auth")
+	auth := r.Group("/auth")
 	{
 		auth.POST("/register", authHandler.Register)
 		auth.POST("/login", authHandler.Login)
+		auth.POST("/logout", authHandler.Logout)
 	}
 
 	// =========================
@@ -52,8 +55,13 @@ func RegisterRoutes(r *gin.Engine) {
 	protected.Use(middleware.AuthMiddleware())
 	{
 		protected.GET("/me", func(c *gin.Context) {
-			user, _ := c.Get("user")
-			c.JSON(200, user)
+			user, ok := c.Get("user")
+			if !ok || user == nil {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "not authenticated"})
+				return
+			}
+
+			c.JSON(http.StatusOK, gin.H{"user": user})
 		})
 	}
 }
