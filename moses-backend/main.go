@@ -7,7 +7,6 @@ import (
 	"moses/database"
 	"moses/routes"
 	"moses/scheduler"
-	"moses/seeders"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -90,7 +89,7 @@ func main() {
 	// ========================
 	// 3. SEEDER
 	// ========================
-	seeders.SeedAll()
+	// seeders.SeedAll()
 
 	// ========================
 	// 4. ROUTER
