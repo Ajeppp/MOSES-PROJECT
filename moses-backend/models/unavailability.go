@@ -3,13 +3,14 @@ package models
 import "time"
 
 type Unavailability struct {
-	ID          uint      `gorm:"primaryKey"`
-	PlayerID    uint      `gorm:"not null"`
-	ServiceDate time.Time `gorm:"not null"`
-	Month       int       `gorm:"not null"`
-	Year        int       `gorm:"not null"`
-	Reason      string    `gorm:"size:255"`
-	CreatedAt   time.Time
+	ID uint `gorm:"primaryKey"`
 
-	Player Player `gorm:"foreignKey:PlayerID"`
+	PlayerID uint
+	Player   Player `gorm:"foreignKey:PlayerID"`
+
+	ServiceDate time.Time
+	Month       int
+	Year        int
+	Reason      string
+	CreatedAt   time.Time
 }

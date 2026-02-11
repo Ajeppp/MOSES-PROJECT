@@ -7,9 +7,9 @@ type Player struct {
 	Name string `gorm:"size:100;not null"`
 
 	MainRoleID uint
-	MainRole   Role `gorm:"foreignKey:MainRoleID"`
+	MainRole   Role `gorm:"foreignKey:MainRoleID;references:ID"` // 🔥 FIX
 
-	Roles []Role `gorm:"many2many:player_roles;"` // additional roles (max 2)
+	Roles []PlayerRole `gorm:"foreignKey:PlayerID"` // 🔥 FIX: pivot entity
 
 	Active    bool `gorm:"default:true"`
 	CreatedAt time.Time

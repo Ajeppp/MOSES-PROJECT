@@ -124,7 +124,7 @@ func pickPlayersForRole(roleCode string, qty int, players []models.Player, used 
 
 		// additional role match
 		for _, r := range p.Roles {
-			if r.Code == roleCode {
+			if r.Role.Code == roleCode {
 				additional = append(additional, p)
 				break
 			}

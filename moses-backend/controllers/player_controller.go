@@ -89,7 +89,7 @@ func GetPlayers(c *gin.Context) {
 	for _, p := range players {
 		additional := []string{}
 		for _, r := range p.Roles {
-			additional = append(additional, r.Code)
+			additional = append(additional, r.Role.Code)
 		}
 
 		result = append(result, gin.H{
